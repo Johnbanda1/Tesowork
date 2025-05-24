@@ -1,8 +1,7 @@
-// Existing DOM Elements
+// DOM Elements
 const header = document.getElementById('header');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-item');
 const navLinksArray = document.querySelectorAll('.nav-link');
 const statItems = document.querySelectorAll('.stat-item');
 const testimonialSlides = document.querySelectorAll('.testimonial-slide');
@@ -28,17 +27,12 @@ menuToggle.addEventListener('click', () => {
   document.body.classList.toggle('menu-open');
 });
 
-// Mobile dropdown toggle
-navItems.forEach(item => {
-  const hasDropdown = item.querySelector('.dropdown');
-  if (hasDropdown) {
-    item.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        item.classList.toggle('active');
-      }
-    });
-  }
+// Close mobile menu when clicking on a link
+navLinksArray.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  });
 });
 
 // Close mobile menu when clicking outside
@@ -49,14 +43,6 @@ document.addEventListener('click', (e) => {
     navLinks.classList.remove('active');
     document.body.classList.remove('menu-open');
   }
-});
-
-// Close mobile menu when clicking on a link
-navLinksArray.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    document.body.classList.remove('menu-open');
-  });
 });
 
 // Smooth scrolling for anchor links
